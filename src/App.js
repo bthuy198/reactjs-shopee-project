@@ -1,13 +1,11 @@
-import InitAllData from "./features/baseData/InitAllData";
-import Utils from "./utils/Utils";
-import Home from "./features/componets/Content/Home/Home";
+import Index from "feature/Index";
+import Utils from "utils/Utils";
 
 export default function App() {
   return (
     <>
-      <InitAllData />
       <Utils />
-      <Home />
+      <Index />
     </>
   );
 }

@@ -22,3 +22,5 @@ export default function FontAwesome() {
   return <></>;
 }
 
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+

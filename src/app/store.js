@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import baseDataReducer from "../features/baseData/BaseData";
+
+import baseSlice from "feature/baseSlice";
 
 const store = configureStore({
   reducer: {
-    baseData: baseDataReducer,
+    baseSlice: baseSlice,
   },
 });
 
