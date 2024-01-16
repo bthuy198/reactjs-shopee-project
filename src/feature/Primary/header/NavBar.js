@@ -23,12 +23,10 @@ export default function NavBar() {
         <div className="col-ends-4 col-span-2 grid grid-cols-5">
           <ItemNavBar>Thông báo</ItemNavBar>
           <ItemNavBar>
-            <i className="fa-regular fa-circle-question"></i>
-            Hỗ trợ
+            <i className="fa-regular fa-circle-question"></i>&nbsp; Hỗ trợ
           </ItemNavBar>
           <ItemNavBar>
-            <i className="fa-solid fa-globe"></i>
-            Tiếng Việt
+            <i className="fa-solid fa-globe"></i>&nbsp; Tiếng Việt
             <i className="fa-solid fa-angle-down"></i>
           </ItemNavBar>
           <div className="col-ends-6 col-span-2 flex w-full cursor-pointer items-center justify-center divide-x text-sm hover:text-orange-100">

@@ -15,7 +15,7 @@ export default function HeaderSearch() {
         <div className="col-span-4 flex grid-rows-3 flex-col">
           <form className="relative row-span-2 flex h-full items-center">
             <input
-              className="absolute left-0 block h-full w-full rounded-sm bg-white pl-4 shadow-sm placeholder:italic placeholder:text-slate-400 focus:outline-none sm:text-sm"
+              className="absolute left-0 block h-full w-full rounded-sm bg-white pl-4 text-black shadow-sm placeholder:italic placeholder:text-slate-400 focus:outline-none sm:text-sm"
               placeholder="Tìm kiếm"
               type="text"
               name="search"
@@ -27,7 +27,9 @@ export default function HeaderSearch() {
           <div className="flex items-end text-[13px]">abc</div>
         </div>
         <div className="col-end-7 mx-auto my-auto">
-          <i className="fa-solid fa-cart-shopping text-2xl"></i>
+          <a href="/cart">
+            <i className="fa-solid fa-cart-shopping text-2xl"></i>
+          </a>
         </div>
       </div>
     </>
