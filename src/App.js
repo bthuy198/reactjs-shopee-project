@@ -2,6 +2,7 @@ import Auth from "feature/Auth";
 import Cart from "feature/Cart";
 import Detail from "feature/Detail";
 import Home from "feature/Home";
+import Order from "feature/Order";
 import Product from "feature/Product";
 import User from "feature/User";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Order />} />
 
           <Route path="/products">
             <Route path="" element={<Product />} />

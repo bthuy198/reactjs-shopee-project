@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("./utils/fonts/futirism.css");
+
+@layer base {
+  html {
+    font-family: "futirism", sans-serif;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+  .container {
+    @apply mx-2 w-full md:mx-auto md:max-w-screen-sm lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    @apply rounded-sm bg-gray-600 bg-opacity-5 p-2 after:text-2xl after:text-white hover:bg-gray-600 hover:bg-opacity-5;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 20px !important;
+  }
+
+  .swiper-pagination {
+    @apply flex flex-row justify-center;
+  }
+
+  .swiper-pagination-bullet {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 16px !important;
+    width: 16px !important;
+    cursor: pointer !important;
+    background-color: black !important;
+    opacity: 0.2 !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 10px !important;
+  }
+
+  .swiper-slide {
+    height: auto !important;
+  }
+}
