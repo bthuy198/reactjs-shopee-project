@@ -1,31 +1,18 @@
-import CategoryItem from "./CategoryItem";
+import CategoryItem from "feature/Primary/Body/CategoryItem";
 import HeaderSection from "./HeaderSection";
 
-export default function Category() {
+export default function Category({ categories }) {
   return (
     <>
-      <HeaderSection title={"danh mục"} />
-      <div className="grid grid-cols-10">
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
-        <CategoryItem image={"category1.png"} title={"Điện thoại"} />
+      <HeaderSection className="w-full" title={"danh mục"} />
+      <div className="grid w-full grid-cols-10">
+        {categories.map((item) => (
+          <CategoryItem
+            image={"category1.png"}
+            title={item.categoryName}
+            key={item.id}
+          />
+        ))}
       </div>
     </>
   );

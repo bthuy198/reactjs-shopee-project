@@ -21,7 +21,7 @@ export default function App() {
 
           <Route path="/products">
             <Route path="" element={<Product />} />
-            <Route path="detail" element={<Detail />} />
+            <Route path="detail/:productId" element={<Detail />} />
           </Route>
           <Route path="/user">
             <Route path="" element={<User title={"info"} />} />

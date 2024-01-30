@@ -1,12 +1,12 @@
 import ProductItem from "feature/Product/components/ProductItem";
 
-export default function ProductList() {
+export default function ProductList({ products, keyword }) {
   return (
     <>
       <div className="flex flex-col gap-3">
         <div>
           Kết quả tìm kiếm cho từ khoá '
-          <span className="text-primary">123</span>'
+          <span className="text-primary">{keyword}</span>'
         </div>
         <div className="flex w-full items-center bg-[#eaeaea] px-6 py-4">
           <div className="w-1/6">Sắp xếp theo</div>
@@ -23,26 +23,22 @@ export default function ProductList() {
             <div className="col-span-2 flex justify-end">
               <div className="border-[#black] text-xs">
                 <a href="">
-                  <i class="fa-solid fa-less-than"></i>
+                  <i className="fa-solid fa-less-than"></i>
                 </a>
               </div>
               <div className="border text-xs">
                 <a href="">
-                  <i class="fa-solid fa-greater-than"></i>
+                  <i className="fa-solid fa-greater-than"></i>
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="grid grid-cols-5 gap-2">
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
+          {products &&
+            products.map((item) => (
+              <ProductItem product={item} key={item.id} />
+            ))}
         </div>
       </div>
     </>

@@ -1,25 +1,45 @@
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
+import { Navigation } from "swiper/modules";
+import { formattedNumber } from "utils/formats/formatNumber";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-export default function ProductPage() {
+export default function ProductPage({ product }) {
+  console.log("productDetails men", product.productDetails);
+  let productDetail = product.productDetails;
+  let category = product.category;
+
+  let avatar =
+    product.productAvatars &&
+    product.productAvatars.find((item) => item.isDefault === true);
+
+  let firstSlideImageSource =
+    product.productAvatars && product.productAvatars[0].fileUrl;
+  console.log("First slide image source:", firstSlideImageSource);
+  const handleChooseSize = (e) => {
+    let sizeId = e.target.dataset.id;
+    let detail = productDetail.find((item) => item.size.id === +sizeId);
+    document.getElementById("priceDiv").innerHTML = formattedNumber(
+      detail.price,
+    );
+    e.target.classList.add("border-primary");
+    e.target.classList.add("text-primary");
+  };
   return (
     <>
-      <div className="mb-14 flex w-full flex-col gap-3">
+      <div className="men_men2 mb-14 flex w-full flex-col gap-3">
         <div className="w-full p-4">
           <nav className="flex" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 rtl:space-x-reverse md:space-x-2">
-              <li class="inline-flex items-center">
+            <ol className="inline-flex items-center space-x-1 rtl:space-x-reverse md:space-x-2">
+              <li className="inline-flex items-center">
                 <a
                   href="#"
-                  class="inline-flex items-center text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+                  className="inline-flex items-center text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
                 >
                   <svg
-                    class="me-2.5 h-3 w-3"
+                    className="me-2.5 h-3 w-3"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -31,9 +51,9 @@ export default function ProductPage() {
                 </a>
               </li>
               <li>
-                <div class="flex items-center">
+                <div className="flex items-center">
                   <svg
-                    class="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
+                    className="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -41,24 +61,24 @@ export default function ProductPage() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="m1 9 4-4-4-4"
                     />
                   </svg>
                   <a
                     href="#"
-                    class="ms-1 text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
+                    className="ms-1 text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
                   >
-                    Category 1
+                    {category && `${category.categoryName}`}
                   </a>
                 </div>
               </li>
               <li aria-current="page">
-                <div class="flex items-center">
+                <div className="flex items-center">
                   <svg
-                    class="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
+                    className="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -66,14 +86,14 @@ export default function ProductPage() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="m1 9 4-4-4-4"
                     />
                   </svg>
-                  <span class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2">
-                    Product 1
+                  <span className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2">
+                    {product.productName}
                   </span>
                 </div>
               </li>
@@ -86,95 +106,61 @@ export default function ProductPage() {
               <div className="w-full">
                 <img
                   className="h-[450px] w-[450px] object-cover"
-                  src={require("assets/images/product-detail.jpg")}
+                  src={
+                    avatar
+                      ? avatar.fileUrl
+                      : require("assets/images/product-example.jpg")
+                  }
                   alt=""
                 />
               </div>
               <div className="w-full shrink-0">
-                <Swiper
-                  modules={[Navigation]}
-                  spaceBetween={5}
-                  slidesPerView={5}
-                  navigation
-                >
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-example.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-example.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-detail.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-example.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-example.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-example.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="h-20 w-20">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={require("assets/images/product-example.jpg")}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                </Swiper>
-                <div className="swiper-button-prev"></div>
-                <div className="swiper-button-next"></div>
+                {avatar && (
+                  <>
+                    <Swiper
+                      navigation
+                      pagination
+                      modules={[Navigation]}
+                      spaceBetween={5}
+                      slidesPerView={5}
+                    >
+                      {product.productAvatars &&
+                        product.productAvatars.map((item) => {
+                          return (
+                            <SwiperSlide className="h-20 w-20">
+                              <img
+                                className="h-full w-full object-cover"
+                                src={item.fileUrl}
+                                alt=""
+                              />
+                            </SwiperSlide>
+                          );
+                        })}
+                    </Swiper>
+                    <div className="swiper-button-prev"></div>
+                    <div className="swiper-button-next"></div>
+                  </>
+                )}
               </div>
             </div>
 
             <div className="w-[60%] p-4">
               <div className="flex flex-col gap-3">
-                <div className="text-xl">
-                  Gel rửa mặt BHA Compliment No Problem làm sạch sâu, giảm viêm
-                  & mụn 200ml
-                </div>
+                <div className="text-xl">{product.productName}</div>
                 <div>155,3k đã bán</div>
-                <div className="w-full bg-[#f5f5f5] px-6 py-3 text-3xl font-semibold text-primary">
-                  150.000
+                <div
+                  id="priceDiv"
+                  className="w-full bg-[#f5f5f5] px-6 py-3 text-3xl font-semibold text-primary"
+                >
+                  {product.minPrice && (
+                    <>
+                      {product.minPrice === product.maxPrice
+                        ? formattedNumber(product.minPrice)
+                        : `${formattedNumber(
+                            product.minPrice,
+                          )} - ${formattedNumber(product.maxPrice)}`}
+                    </>
+                  )}
                 </div>
                 <div className="flex">
                   <div className="w-[110px]">Vận chuyển</div>
@@ -183,10 +169,22 @@ export default function ProductPage() {
                 <div className="flex">
                   <div className="w-[110px]">Size</div>
                   <div className="grid w-[400px] grid-cols-4 items-center gap-4 text-center">
-                    <div className="border py-1">S</div>
-                    <div className="border py-1">M</div>
-                    <div className="border py-1">L</div>
-                    <div className="border py-1">XL</div>
+                    {productDetail &&
+                      productDetail.map((e) => {
+                        return e.quantity === 0 ? (
+                          <div className="cursor-not-allowed border py-1 text-gray-400">
+                            {e.size.size}
+                          </div>
+                        ) : (
+                          <div
+                            data-id={e.id}
+                            onClick={handleChooseSize}
+                            className="cursor-pointer border py-1 hover:border-primary hover:text-primary "
+                          >
+                            {e.size.size}
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -207,14 +205,14 @@ export default function ProductPage() {
                         data-input-counter
                         aria-describedby="helper-text-explanation"
                         className="w-12 border border-gray-300 px-2 py-1 text-center text-sm focus:outline-none"
-                        placeholder="999"
+                        placeholder="1"
                         required
                       />
                       <button
                         type="button"
                         id="decrement-button"
                         data-input-counter-decrement="quantity-input"
-                        class="rounded-sm rounded-bl-none rounded-tl-none border border-l-0 border-gray-300 px-2 py-0.5 focus:outline-none"
+                        className="rounded-sm rounded-bl-none rounded-tl-none border border-l-0 border-gray-300 px-2 py-0.5 focus:outline-none"
                       >
                         <i className="fa-solid fa-plus text-xs"></i>
                       </button>
@@ -224,7 +222,8 @@ export default function ProductPage() {
                 </div>
                 <div className="text-sm">
                   <button className="mr-4 h-12 appearance-none rounded-sm border border-primary bg-[rgba(255,87,34,0.1)] px-6 font-semibold capitalize text-primary">
-                    <i class="fa-solid fa-cart-plus"></i>&nbsp;Thêm vào giỏ hàng
+                    <i className="fa-solid fa-cart-plus"></i>&nbsp;Thêm vào giỏ
+                    hàng
                   </button>
                   <button className="h-12 appearance-none rounded-sm bg-primary px-12 font-semibold capitalize text-white">
                     Mua ngay
@@ -243,19 +242,19 @@ export default function ProductPage() {
               <div className="w-[140px]">Danh mục</div>
               <div className="text-center">
                 <nav className="flex" aria-label="Breadcrumb">
-                  <ol class="inline-flex items-center space-x-1 rtl:space-x-reverse md:space-x-2">
-                    <li class="inline-flex items-center">
+                  <ol className="inline-flex items-center space-x-1 rtl:space-x-reverse md:space-x-2">
+                    <li className="inline-flex items-center">
                       <a
                         href="#"
-                        class="inline-flex items-center text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+                        className="inline-flex items-center text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
                       >
                         Shopee
                       </a>
                     </li>
                     <li>
-                      <div class="flex items-center">
+                      <div className="flex items-center">
                         <svg
-                          class="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
+                          className="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -263,24 +262,24 @@ export default function ProductPage() {
                         >
                           <path
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="m1 9 4-4-4-4"
                           />
                         </svg>
                         <a
                           href="#"
-                          class="ms-1 text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
+                          className="ms-1 text-sm font-medium text-[#0055AA] hover:text-blue-600 dark:text-gray-400 dark:hover:text-white md:ms-2"
                         >
-                          Category 1
+                          {category && `${category.categoryName}`}
                         </a>
                       </div>
                     </li>
                     <li aria-current="page">
-                      <div class="flex items-center">
+                      <div className="flex items-center">
                         <svg
-                          class="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
+                          className="mx-1 h-3 w-3 text-gray-400 rtl:rotate-180"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -288,14 +287,14 @@ export default function ProductPage() {
                         >
                           <path
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="m1 9 4-4-4-4"
                           />
                         </svg>
-                        <span class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2">
-                          Product 1
+                        <span className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2">
+                          {product.productName}
                         </span>
                       </div>
                     </li>
@@ -319,7 +318,20 @@ export default function ProductPage() {
           <div className="w-full bg-[#fbfbfb] p-2">
             <h3 className="text-lg uppercase">mô tả sản phẩm</h3>
           </div>
-          <div></div>
+          <div className="text-sm leading-6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dignissimos, praesentium. Quidem ex magnam debitis quisquam eligendi
+            incidunt possimus, non eius odit, beatae totam sit ratione! Iusto,
+            nisi beatae rem ab nam dolorum culpa quos atque necessitatibus,
+            doloribus labore expedita nesciunt unde provident error! Distinctio,
+            cum ut. Veniam, facilis. Quia, facere accusantium odio dolores
+            aliquam unde ipsam quidem odit ab sed a natus placeat itaque omnis
+            repellendus magni autem iure eos similique aliquid reiciendis
+            voluptate amet illo illum! Repudiandae placeat inventore eos fuga
+            voluptatem dignissimos aliquam maxime pariatur accusantium iure
+            dolor earum unde perferendis, vel sequi, eligendi temporibus!
+            Dolores, sunt quos.
+          </div>
         </div>
       </div>
     </>
